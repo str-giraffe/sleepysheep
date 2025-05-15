@@ -1,0 +1,73 @@
+/* 自定义登录模态框样式 */
+#loginModal .modal-content {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+#loginModal .modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 0;
+}
+
+#loginModal .modal-title {
+    font-weight: 600;
+    color: #4361ee;
+}
+
+#loginModal .close {
+    color: #6c757d;
+    opacity: 0.8;
+    font-size: 1.5rem;
+    transition: color 0.2s ease;
+}
+
+#loginModal .close:hover {
+    color: #4361ee;
+}
+
+/* 输入框样式优化 */
+#loginModal .input-group-text {
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    border-radius: 0.5rem 0 0 0.5rem !important;
+    background: #f8f9fa;
+    border-right: 0;
+}
+
+#loginModal .form-control {
+    padding: 0.75rem;
+    border-radius: 0 0.5rem 0.5rem 0 !important;
+    height: calc(1.5em + 1.5rem);
+    border-left: 0;
+    background: #f8f9fa;
+}
+
+#loginModal .form-control:focus {
+    box-shadow: none;
+    border-color: #4361ee;
+}
+
+/* 按钮动效增强 */
+#loginModal .btn-primary {
+    background-color: #4361ee;
+    border-color: #4361ee;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+#loginModal .btn-primary:hover {
+    background-color: #3a0ca3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+}
+
+/* 细节调整 */
+#loginModal a:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+#loginModal .rounded-pill {
+    border-radius: 50px !important;
+}

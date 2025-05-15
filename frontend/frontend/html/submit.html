@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>语林啄木鸟 &mdash; 内容提交</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="向 语林啄木鸟 提交你的内容">
+  <meta name="keywords" content="NLP, 智能助手, 文本提交, Flask, AI对话">
+
+  <!-- 网站图标 -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/modernizr-2.6.2.min.js"></script>
+
+  <style>
+    .char-counter { text-align: right; font-size: 0.8rem; color: #6c757d; margin-top: 5px; }
+    .submit-spinner {
+      display: none;
+      margin-right: 8px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% {transform: rotate(0);} 100% {transform: rotate(360deg);} }
+    .smooth-transition { transition: all 0.3s ease; }
+  </style>
+</head>
+
+<body>
+<div class="box-wrap">
+  <!-- 头部导航 -->
+  <header role="banner" id="fh5co-header">
+    <div class="container">
+      <nav class="navbar navbar-default" aria-label="主导航">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="fh5co-navbar-brand">
+              <a class="fh5co-logo" href="index.html">语林啄木鸟</a>
+            </div>
+          </div>
+          <div class="col-md-9 main-nav">
+            <ul class="nav text-right">
+              <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+              <li class="active"><a href="submit.html"><i class="fas fa-paper-plane"></i> 文本提交</a></li>
+              <li><a href="services.html"><i class="fas fa-server"></i> 服务</a></li>
+              <li><a href="product.html"><i class="fas fa-box-open"></i> 产品</a></li>
+              <li><a href="about.html"><i class="fas fa-info-circle"></i> 关于</a></li>
+              <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 页面主体 -->
+  <main class="container mt-5">
+    <h1 class="h2"><i class="fas fa-paper-plane"></i> 内容提交</h1>
+
+    <form id="inputForm">
+      <fieldset>
+        <div class="mb-3">
+          <label for="textInput">请输入文本：</label>
+          <textarea class="form-control" id="textInput" rows="10" placeholder="请在此输入需要提交的内容..."></textarea>
+          <div class="char-counter"><span id="charCount">0</span> 字符</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 smooth-transition">
+          <i class="fas fa-spinner submit-spinner"></i> 提交
+        </button>
+
+        <div class="mt-3">
+          <label>处理结果：</label>
+          <textarea class="form-control" id="resultArea" rows="8" readonly placeholder="服务器返回结果将显示在这里..." style="white-space: pre-line;"></textarea>
+        </div>
+      </fieldset>
+    </form>
+
+    <div id="responseMessage" class="mt-3" role="alert"></div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const textInput = document.getElementById('textInput');
+  const resultArea = document.getElementById('resultArea');
+  const charCount = document.getElementById('charCount');
+  const submitSpinner = document.querySelector('.submit-spinner');
+  const submitBtn = document.querySelector('#inputForm button');
+  const responseMessage = document.getElementById('responseMessage');
+
+  textInput.addEventListener('input', () => {
+    charCount.textContent = textInput.value.length;
+  });
+
+  document.getElementById('inputForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    resultArea.value = "正在处理，请稍候...";
+    responseMessage.innerHTML = "";
+
+    try {
+      const formData = new FormData();
+      if (textInput.value.trim()) {
+        formData.append('text', textInput.value);
+      } else {
+        showMessage('warning', '请填写文本后再提交。');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitSpinner.style.display = 'inline-block';
+
+      const response = await fetch('/api/submit', { method: 'POST', body: formData });
+      if (!response.ok) throw new Error(`服务器错误 ${response.status}`);
+      const data = await response.json();
+
+      resultArea.value = typeof data.result === 'string' ? data.result.replace(/\\n/g, '\n') : JSON.stringify(data, null, 2);
+      showMessage('success', '提交成功！');
+    } catch (error) {
+      resultArea.value = `错误：${error.message}`;
+      showMessage('danger', `出错了：${error.message}`);
+    } finally {
+      submitBtn.disabled = false;
+      submitSpinner.style.display = 'none';
+    }
+  });
+
+  function showMessage(type, message) {
+    responseMessage.innerHTML = `
+      <div class="alert alert-${type} alert-dismissible fade show">
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>`;
+  }
+});
+</script>
+</body>
+</html>
+
