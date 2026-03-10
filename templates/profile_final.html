@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 20px; }
+        .profile-card { background: white; padding: 30px; border-radius: 8px; max-width: 600px; margin: 0 auto; }
+        .info-item { margin: 15px 0; }
+        .info-label { color: #666; font-size: 14px; }
+        .info-value { font-weight: bold; margin-top: 5px; }
+        .table-container { margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #fafafa; }
+        .back-link { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #1890ff; color: white; text-decoration: none; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <h1>个人中心</h1>
+        
+        <div class="info-item">
+            <div class="info-label">用户名</div>
+            <div class="info-value">{{ user[0] }}</div>
+        </div>
+        
+        <div class="info-item">
+            <div class="info-label">邮箱</div>
+            <div class="info-value">{{ user[1] }}</div>
+        </div>
+        
+        <div class="info-item">
+            <div class="info-label">角色</div>
+            <div class="info-value">{{ user[2] }}</div>
+        </div>
+        
+        <div class="info-item">
+            <div class="info-label">注册时间</div>
+            <div class="info-value">{{ user[3] }}</div>
+        </div>
+        
+        <div class="table-container">
+            <h2>最近查询</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>问题</th>
+                        <th>回答</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for query in queries %}
+                    <tr>
+                        <td>{{ query[0] }}</td>
+                        <td>{{ query[1][:50] }}{% if query[1]|length > 50 %}...{% endif %}</td>
+                        <td>{{ query[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <a href="/" class="back-link">返回首页</a>
+    </div>
+</body>
+</html>
