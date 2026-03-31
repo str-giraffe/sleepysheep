@@ -34,7 +34,7 @@ policy_qa_system/
 ### 1. 激活 ml 虚拟环境
 
 ```cmd
-C:\Users\鹤别桃花\hbch@196\envs\ml\Scripts\activate
+conda activate ml
 ```
 
 ### 2. 安装依赖
