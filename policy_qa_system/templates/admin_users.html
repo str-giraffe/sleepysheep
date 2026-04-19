@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理 - 管理后台</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>功能导航</h3>
+                <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/">政策问答</a></li>
+                <li><a href="/profile">个人中心</a></li>
+                <li><a href="/forum">讨论广场</a></li>
+                <li><a href="/admin" class="active">管理后台</a></li>
+                <li><a href="/logout">登出</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>👥 用户管理</h1>
+            <a href="/admin" class="btn" style="margin-left: auto;">← 返回后台首页</a>
+        </div>
+        <div class="container">
+            <div class="nav">
+                {% if user_info %}
+                    <div style="display: flex; align-items: center; gap: 15px; justify-content: flex-end;">
+                        <span style="color: #333; font-weight: 500;">👤 {{ user_info.nickname or user_info.username }}</span>
+                        <a href="/profile">个人中心</a>
+                        <a href="/logout" class="logout">登出</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div id="message"></div>
+
+            <div class="card">
+                <h2>📋 用户列表</h2>
+                <div id="userList" class="policy-list">
+                    <div class="empty-state">加载中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="banModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>封禁用户</h3>
+                <span class="close" onclick="closeBanModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="banUserId">
+                <div class="form-group">
+                    <label>封禁类型</label>
+                    <select id="banType" onchange="toggleBanDuration()">
+                        <option value="temporary">临时封禁</option>
+                        <option value="permanent">永久封禁</option>
+                    </select>
+                </div>
+                <div class="form-group" id="durationGroup">
+                    <label>封禁时长（小时）</label>
+                    <input type="number" id="banDuration" value="24" min="1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeBanModal()">取消</button>
+                <button class="btn btn-danger" onclick="confirmBan()">确认封禁</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/users');
+                const users = await response.json();
+                const userList = document.getElementById('userList');
+                
+                if (users.length === 0) {
+                    userList.innerHTML = '<div class="empty-state">暂无用户。</div>';
+                } else {
+                    userList.innerHTML = users.map(user => `
+                        <div class="policy-item">
+                            <h3>${escapeHtml(user.username)}</h3>
+                            <div class="meta">
+                                角色：${user.role === 'admin' ? '管理员' : '普通用户'} | 
+                                昵称：${user.nickname || '未设置'} | 
+                                地区：${user.region || '未设置'} | 
+                                创建时间：${user.created_at} | 
+                                状态：${user.is_banned ? '永久封禁' : (user.ban_until ? '临时封禁' : '正常')}
+                            </div>
+                            <div class="actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <select onchange="updateUserRole(${user.id}, this.value)" value="${user.role}">
+                                    <option value="user" ${user.role === 'user' ? 'selected' : ''}>普通用户</option>
+                                    <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>管理员</option>
+                                </select>
+                                ${!user.is_banned && !user.ban_until ? `
+                                    <button class="btn btn-danger btn-sm" onclick="banUser(${user.id})">封禁</button>
+                                ` : `
+                                    <button class="btn btn-success btn-sm" onclick="unbanUser(${user.id})">解除封禁</button>
+                                `}
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                showMessage('加载用户列表失败：' + error.message, 'error');
+            }
+        }
+
+        async function updateUserRole(userId, role) {
+            try {
+                const response = await fetch(`/api/users/${userId}/role`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ role })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    loadUsers();
+                } else {
+                    showMessage(data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('更新用户角色失败：' + error.message, 'error');
+            }
+        }
+
+        function toggleBanDuration() {
+            const banType = document.getElementById('banType').value;
+            const durationGroup = document.getElementById('durationGroup');
+            durationGroup.style.display = banType === 'temporary' ? 'block' : 'none';
+        }
+
+        function openBanModal(userId) {
+            document.getElementById('banUserId').value = userId;
+            document.getElementById('banModal').style.display = 'block';
+        }
+
+        function closeBanModal() {
+            document.getElementById('banModal').style.display = 'none';
+        }
+
+        async function confirmBan() {
+            const userId = document.getElementById('banUserId').value;
+            const banType = document.getElementById('banType').value;
+            
+            let banData;
+            if (banType === 'temporary') {
+                const duration = document.getElementById('banDuration').value;
+                if (!duration || isNaN(duration) || duration <= 0) {
+                    showMessage('请输入有效的封禁时长', 'error');
+                    return;
+                }
+                banData = { ban_type: 'temporary', ban_duration: parseInt(duration) };
+            } else {
+                if (!confirm('确定要永久封禁该用户吗？')) return;
+                banData = { ban_type: 'permanent' };
+            }
+            
+            try {
+                const response = await fetch(`/api/users/${userId}/ban`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(banData)
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    loadUsers();
+                    closeBanModal();
+                } else {
+                    showMessage(data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('封禁用户失败：' + error.message, 'error');
+            }
+        }
+
+        async function banUser(userId) {
+            openBanModal(userId);
+        }
+
+        async function unbanUser(userId) {
+            if (!confirm('确定要解除该用户的封禁吗？')) return;
+            
+            try {
+                const response = await fetch(`/api/users/${userId}/unban`, { method: 'POST' });
+                const data = await response.json();
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    loadUsers();
+                } else {
+                    showMessage(data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('解除封禁失败：' + error.message, 'error');
+            }
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = '<div class="message ' + type + '">' + escapeHtml(text) + '</div>';
+            setTimeout(() => { messageDiv.innerHTML = ''; }, 5000);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('open');
+            setTimeout(() => { sidebar.style.left = '-230px'; }, 10);
+        }
+
+        loadUsers();
+    </script>
+</body>
+</html>
