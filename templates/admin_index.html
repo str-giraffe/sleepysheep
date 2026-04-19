@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 - 政策问答系统</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .admin-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .admin-nav-item {
+            background: linear-gradient(135deg, #c41e3a 0%, #d4a017 100%);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+        }
+        .admin-nav-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.4);
+        }
+        .admin-nav-item .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .admin-nav-item .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .admin-nav-item .desc {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #fff5f5 0%, #fffaf0 100%);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .welcome-section h2 {
+            color: #c41e3a;
+            margin-bottom: 10px;
+        }
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-item .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #d4a017;
+        }
+        .stat-item .label {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>功能导航</h3>
+                <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/">政策问答</a></li>
+                <li><a href="/profile">个人中心</a></li>
+                <li><a href="/forum">讨论广场</a></li>
+                <li><a href="/admin" class="active">管理后台</a></li>
+                <li><a href="/logout">登出</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>⚙️ 管理后台</h1>
+        </div>
+        <div class="container">
+            <div class="nav">
+                {% if user_info %}
+                    <div style="display: flex; align-items: center; gap: 15px; justify-content: flex-end;">
+                        <span style="color: #333; font-weight: 500;">👤 {{ user_info.nickname or user_info.username }}</span>
+                        {% if user_info.region %}
+                        <span style="color: #666; font-size: 14px;">({{ user_info.region }})</span>
+                        {% endif %}
+                        <a href="/profile">个人中心</a>
+                        <a href="/logout" class="logout">登出</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="welcome-section">
+                <h2>欢迎来到管理后台</h2>
+                <p style="color: #666;">请选择要管理的功能模块</p>
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <div class="number" id="statPolicies">-</div>
+                        <div class="label">政策数量</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number" id="statUsers">-</div>
+                        <div class="label">用户数量</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number" id="statTopics">-</div>
+                        <div class="label">讨论主题</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-nav">
+                <a href="/admin/policies" class="admin-nav-item">
+                    <div class="icon">📚</div>
+                    <div class="title">政策管理</div>
+                    <div class="desc">添加、查看、删除政策文件</div>
+                </a>
+                <a href="/admin/categories" class="admin-nav-item">
+                    <div class="icon">🏷️</div>
+                    <div class="title">分类管理</div>
+                    <div class="desc">管理政策分类</div>
+                </a>
+                <a href="/admin/tags" class="admin-nav-item">
+                    <div class="icon">🔖</div>
+                    <div class="title">标签管理</div>
+                    <div class="desc">管理政策标签</div>
+                </a>
+                <a href="/admin/users" class="admin-nav-item">
+                    <div class="icon">👥</div>
+                    <div class="title">用户管理</div>
+                    <div class="desc">管理用户角色和封禁</div>
+                </a>
+                <a href="/admin/experts" class="admin-nav-item">
+                    <div class="icon">⭐</div>
+                    <div class="title">专家认证管理</div>
+                    <div class="desc">审核专家申请</div>
+                </a>
+                <a href="/admin/interpretations" class="admin-nav-item">
+                    <div class="icon">📝</div>
+                    <div class="title">专家解读管理</div>
+                    <div class="desc">审核专家解读</div>
+                </a>
+                <a href="/admin/public-voice" class="admin-nav-item">
+                    <div class="icon">🗣️</div>
+                    <div class="title">民声管理</div>
+                    <div class="desc">民声设置与推举管理</div>
+                </a>
+                <a href="/admin/statistics" class="admin-nav-item">
+                    <div class="icon">📊</div>
+                    <div class="title">数据统计</div>
+                    <div class="desc">查看系统数据统计</div>
+                </a>
+                <a href="/admin/rag" class="admin-nav-item">
+                    <div class="icon">🤖</div>
+                    <div class="title">RAG数据库</div>
+                    <div class="desc">构建/更新RAG数据库</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadQuickStats() {
+            try {
+                const response = await fetch('/api/statistics');
+                const stats = await response.json();
+                document.getElementById('statPolicies').textContent = stats.policy_count;
+                document.getElementById('statUsers').textContent = stats.user_count;
+                
+                const topicsResponse = await fetch('/api/forum/topics');
+                const topics = await topicsResponse.json();
+                document.getElementById('statTopics').textContent = topics.length;
+            } catch (error) {
+                console.error('加载统计失败:', error);
+            }
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('open');
+            setTimeout(() => {
+                sidebar.style.left = '-230px';
+            }, 10);
+        }
+        
+        loadQuickStats();
+    </script>
+</body>
+</html>

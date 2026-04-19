@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专家认证管理 - 管理后台</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>功能导航</h3>
+                <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/">政策问答</a></li>
+                <li><a href="/profile">个人中心</a></li>
+                <li><a href="/forum">讨论广场</a></li>
+                <li><a href="/admin" class="active">管理后台</a></li>
+                <li><a href="/logout">登出</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>⭐ 专家认证管理</h1>
+            <a href="/admin" class="btn" style="margin-left: auto;">← 返回后台首页</a>
+        </div>
+        <div class="container">
+            <div class="nav">
+                {% if user_info %}
+                    <div style="display: flex; align-items: center; gap: 15px; justify-content: flex-end;">
+                        <span style="color: #333; font-weight: 500;">👤 {{ user_info.nickname or user_info.username }}</span>
+                        <a href="/profile">个人中心</a>
+                        <a href="/logout" class="logout">登出</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div id="message"></div>
+
+            <div class="card">
+                <h2>📋 待审核专家申请</h2>
+                <div id="expertApplicationList" class="policy-list">
+                    <div class="empty-state">加载中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadExpertApplications() {
+            try {
+                const response = await fetch('/api/admin/expert/applications');
+                const applications = await response.json();
+                const listDiv = document.getElementById('expertApplicationList');
+                
+                if (applications.length === 0) {
+                    listDiv.innerHTML = '<div class="empty-state">暂无专家申请。</div>';
+                    return;
+                }
+
+                listDiv.innerHTML = applications.map(app => `
+                    <div class="policy-item">
+                        <h3>${escapeHtml(app.username)}</h3>
+                        <div class="meta">
+                            昵称：${app.nickname || '未设置'} | 
+                            地区：${app.region || '未设置'} | 
+                            申请时间：${app.created_at}
+                        </div>
+                        <div class="content-preview">
+                            <strong>申请理由：</strong>${escapeHtml(app.application)}
+                        </div>
+                        <div class="actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                            <button class="btn btn-success btn-sm" onclick="approveExpert(${app.id})">批准</button>
+                            <button class="btn btn-danger btn-sm" onclick="rejectExpert(${app.id})">拒绝</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                showMessage('加载专家申请列表失败：' + error.message, 'error');
+            }
+        }
+        
+        async function approveExpert(userId) {
+            if (!confirm('确定要批准该用户的专家申请吗？')) return;
+            
+            try {
+                const response = await fetch(`/api/admin/expert/applications/${userId}/approve`, { method: 'POST' });
+                const data = await response.json();
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    loadExpertApplications();
+                } else {
+                    showMessage(data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('批准专家申请失败：' + error.message, 'error');
+            }
+        }
+        
+        async function rejectExpert(userId) {
+            if (!confirm('确定要拒绝该用户的专家申请吗？')) return;
+            
+            try {
+                const response = await fetch(`/api/admin/expert/applications/${userId}/reject`, { method: 'POST' });
+                const data = await response.json();
+                if (response.ok) {
+                    showMessage(data.message, 'success');
+                    loadExpertApplications();
+                } else {
+                    showMessage(data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('拒绝专家申请失败：' + error.message, 'error');
+            }
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = '<div class="message ' + type + '">' + escapeHtml(text) + '</div>';
+            setTimeout(() => { messageDiv.innerHTML = ''; }, 5000);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('open');
+            setTimeout(() => { sidebar.style.left = '-230px'; }, 10);
+        }
+
+        loadExpertApplications();
+    </script>
+</body>
+</html>
