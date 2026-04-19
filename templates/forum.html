@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讨论广场 - 政策问答系统</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.8) 0%, rgba(205, 133, 63, 0.8) 100%), url('https://img.freepik.com/free-vector/china-great-wall-silhouette_1048-12746.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #8B0000 0%, #CD853F 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid #8B0000;
+            padding-bottom: 10px;
+        }
+        .create-topic {
+            margin-bottom: 30px;
+        }
+        .create-topic h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+        }
+        .topic-list {
+            margin-top: 20px;
+        }
+        .topic-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+        .topic-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .topic-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            text-decoration: none;
+            flex: 1;
+        }
+        .topic-title:hover {
+            color: #667eea;
+        }
+        .topic-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .topic-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 13px;
+            color: #888;
+        }
+        .topic-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #888;
+        }
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        .ban-notice {
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #c62828;
+        }
+        .admin-actions {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>功能导航</h3>
+                <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/">政策问答</a></li>
+                <li><a href="/profile">个人中心</a></li>
+                <li><a href="/forum" class="active">讨论广场</a></li>
+                {% if user_info.role == 'admin' %}
+                <li><a href="/admin">管理后台</a></li>
+                {% endif %}
+                <li><a href="/logout">登出</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-container">
+        <div class="header">
+            <h1>💬 讨论广场</h1>
+        </div>
+        <div class="nav">
+            <div style="display: flex; align-items: center; gap: 15px; width: 100%; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-grow: 1;">
+                    <div style="flex-grow: 1; max-width: 400px;">
+                        <form action="/search" method="GET" style="display: flex;">
+                            <input type="text" name="q" placeholder="搜索政策内容..." style="flex-grow: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px 0 0 4px; font-size: 14px;">
+                            <button type="submit" class="btn" style="border-radius: 0 4px 4px 0; padding: 8px 16px; font-size: 14px;">搜索</button>
+                        </form>
+                    </div>
+                    {% if user_info and not user_info.is_banned and not user_info.ban_until %}
+                    <button id="create-topic-btn" class="btn" style="padding: 8px 16px; font-size: 14px; background: linear-gradient(135deg, #8B0000 0%, #CD853F 100%);">发布主题</button>
+                    {% endif %}
+                </div>
+                {% if user_info %}
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #333; font-weight: 500;">👤 {{ user_info.nickname or user_info.username }}</span>
+                    {% if user_info.region %}
+                    <span style="color: #666; font-size: 14px;">({{ user_info.region }})</span>
+                    {% endif %}
+                    <a href="/">首页</a>
+                    <a href="/profile">个人中心</a>
+                    <a href="/logout" class="logout">登出</a>
+                </div>
+                {% else %}
+                <div style="display: flex; justify-content: flex-end;">
+                    <a href="/login" class="login-btn">登录</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- 发布主题弹窗 -->
+        <div id="create-topic-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+            <div style="background: white; border-radius: 10px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="color: #333; margin: 0;">发布新主题</h3>
+                    <button onclick="closeCreateTopicModal()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #666;">×</button>
+                </div>
+                <form id="create-topic-form">
+                    <div class="form-group">
+                        <label for="topic-title">标题</label>
+                        <input type="text" id="topic-title" placeholder="请输入主题标题" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-content">内容</label>
+                        <textarea id="topic-content" placeholder="请输入主题内容" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-image">图片（可选）</label>
+                        <input type="file" id="topic-image" accept="image/*">
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">支持JPG、PNG等图片格式</p>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="submit" class="btn" style="background: linear-gradient(135deg, #8B0000 0%, #CD853F 100%);">发布主题</button>
+                        <button type="button" class="btn" style="background: #6c757d;" onclick="closeCreateTopicModal()">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="container">
+        {% if user_info %}
+            {% if user_info.is_banned or user_info.ban_until %}
+                <div class="ban-notice">
+                    ⚠️ 您已被封禁，无法发布或回复内容
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="card">
+                <h2>提示</h2>
+                <p>请先登录后发布或查看讨论内容</p>
+                <a href="/login" class="btn">去登录</a>
+            </div>
+        {% endif %}
+        
+        <!-- 讨论主题列表 -->
+        <div class="card" style="z-index: 1;">
+            <h2>讨论主题</h2>
+            <div class="topic-list" id="topic-list">
+                {% if topics %}
+                    {% for topic in topics %}
+                    <div class="topic-item">
+                        <div class="topic-header">
+                            <a href="/forum/topic/{{ topic.id }}" class="topic-title">{{ topic.title }}</a>
+                            {% if user_info and user_info.role == 'admin' %}
+                                <div class="admin-actions">
+                                    <button class="btn btn-danger" style="padding: 4px 12px; font-size: 12px;" onclick="deleteTopic({{ topic.id }})">删除</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="topic-meta">
+                            <span>作者：{{ topic.nickname }}</span>
+                            <span>发布时间：{{ topic.created_at }}</span>
+                        </div>
+                        <div class="topic-stats">
+                            <span>👁️ {{ topic.view_count }} 浏览</span>
+                            <span>💬 {{ topic.reply_count }} 回复</span>
+                            <span>� {{ topic.like_count }} 点赞</span>
+                            {% if topic.has_image %}
+                            <span style="color: #1890ff;">📷 图片</span>
+                            {% endif %}
+                            <span>� 最后更新：{{ topic.updated_at }}</span>
+                        </div>
+                        {% if user_info %}
+                        <div style="margin-top: 10px;">
+                            <button class="btn" style="padding: 4px 12px; font-size: 12px;" onclick="likeTopic({{ topic.id }})">👍 点赞</button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <i>💬</i>
+                        <p>暂无讨论主题，快来发布第一个主题吧！</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <script>
+        // 发布主题弹窗功能
+        function openCreateTopicModal() {
+            document.getElementById('create-topic-modal').style.display = 'flex';
+        }
+        
+        function closeCreateTopicModal() {
+            document.getElementById('create-topic-modal').style.display = 'none';
+            // 重置表单
+            document.getElementById('create-topic-form').reset();
+        }
+        
+        // 点击弹窗外部关闭
+        document.getElementById('create-topic-modal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCreateTopicModal();
+            }
+        });
+        
+        // 绑定发布主题按钮
+        document.getElementById('create-topic-btn')?.addEventListener('click', openCreateTopicModal);
+        
+        // 发布主题表单提交
+        document.getElementById('create-topic-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('topic-title').value.trim();
+            const content = document.getElementById('topic-content').value.trim();
+            const imageFile = document.getElementById('topic-image').files[0];
+            
+            if (!title || !content) {
+                alert('标题和内容不能为空');
+                return;
+            }
+            
+            // 检查是否有图片
+            const hasImage = imageFile ? 1 : 0;
+            
+            fetch('/api/forum/topics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content, has_image: hasImage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    closeCreateTopicModal();
+                    loadTopics(); // 实时加载最新主题
+                } else {
+                    alert(data.error || '发布失败');
+                }
+            })
+            .catch(error => {
+                alert('网络错误，请稍后重试');
+            });
+        });
+        
+        function deleteTopic(topicId) {
+            if (confirm('确定要删除这个主题吗？删除后将无法恢复。')) {
+                fetch(`/api/forum/topics/${topicId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        loadTopics(); // 实时加载最新主题
+                    } else {
+                        alert(data.error || '删除失败');
+                    }
+                })
+                .catch(error => {
+                    alert('网络错误，请稍后重试');
+                });
+            }
+        }
+        
+        function likeTopic(topicId) {
+            fetch(`/api/forum/topics/${topicId}/like`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 实时更新点赞数
+                    const topicItem = document.querySelector(`.topic-item[data-topic-id="${topicId}"]`);
+                    if (topicItem) {
+                        const likeElement = topicItem.querySelector('.topic-stats span:nth-child(3)');
+                        if (likeElement) {
+                            const currentLikes = parseInt(likeElement.textContent.match(/\d+/)[0]);
+                            likeElement.textContent = `👍 ${currentLikes + 1} 点赞`;
+                        }
+                    }
+                    alert(data.message);
+                } else {
+                    alert(data.message || data.error || '点赞失败');
+                }
+            })
+            .catch(error => {
+                alert('网络错误，请稍后重试');
+            });
+        }
+        
+        // 实时加载主题列表
+        function loadTopics() {
+            fetch('/api/forum/topics')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.topics) {
+                    const topicList = document.getElementById('topic-list');
+                    if (topicList) {
+                        if (data.topics.length === 0) {
+                            topicList.innerHTML = `
+                                <div class="empty-state">
+                                    <i>💬</i>
+                                    <p>暂无讨论主题，快来发布第一个主题吧！</p>
+                                </div>
+                            `;
+                            return;
+                        }
+                        
+                        topicList.innerHTML = data.topics.map(topic => `
+                            <div class="topic-item" data-topic-id="${topic.id}">
+                                <div class="topic-header">
+                                    <a href="/forum/topic/${topic.id}" class="topic-title">${topic.title}</a>
+                                    {% if user_info and user_info.role == 'admin' %}
+                                        <div class="admin-actions">
+                                            <button class="btn btn-danger" style="padding: 4px 12px; font-size: 12px;" onclick="deleteTopic(${topic.id})
+">删除</button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="topic-meta">
+                                    <span>作者：${topic.nickname}</span>
+                                    <span>发布时间：${topic.created_at}</span>
+                                </div>
+                                <div class="topic-stats">
+                                    <span>👁️ ${topic.view_count} 浏览</span>
+                                    <span>💬 ${topic.reply_count} 回复</span>
+                                    <span>👍 ${topic.like_count} 点赞</span>
+                                    ${topic.has_image ? '<span style="color: #1890ff;">📷 图片</span>' : ''}
+                                    <span>⏰ 最后更新：${topic.updated_at}</span>
+                                </div>
+                                {% if user_info %}
+                                <div style="margin-top: 10px;">
+                                    <button class="btn" style="padding: 4px 12px; font-size: 12px;" onclick="likeTopic(${topic.id})
+">👍 点赞</button>
+                                </div>
+                                {% endif %}
+                            </div>
+                        `).join('');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('加载主题失败:', error);
+            });
+        }
+        
+        // 定时刷新主题列表（每30秒）
+        setInterval(loadTopics, 30000);
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('collapsed');
+        }
+        
+        // 侧边栏悬停显示功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            
+            // 当鼠标悬停在侧边栏区域时显示
+            sidebar.addEventListener('mouseenter', function() {
+                sidebar.classList.remove('collapsed');
+            });
+            
+            // 当鼠标离开侧边栏时自动收缩
+            sidebar.addEventListener('mouseleave', function() {
+                sidebar.classList.add('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>
