@@ -1,0 +1,1283 @@
+msgid "Policy Q&A System"
+msgstr "政策问答系统"
+
+msgid "Intelligent policy consulting system based on RAG technology"
+msgstr "基于RAG技术的智能政策咨询系统"
+
+msgid "Login"
+msgstr "登录"
+
+msgid "Register"
+msgstr "注册"
+
+msgid "Logout"
+msgstr "退出"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Forum"
+msgstr "讨论广场"
+
+msgid "Profile"
+msgstr "个人中心"
+
+msgid "Admin"
+msgstr "管理后台"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Policy Q&A"
+msgstr "政策问答"
+
+msgid "Ask"
+msgstr "提问"
+
+msgid "Answer"
+msgstr "回答"
+
+msgid "Submit"
+msgstr "提交"
+
+msgid "Username"
+msgstr "用户名"
+
+msgid "Password"
+msgstr "密码"
+
+msgid "Region"
+msgstr "地区"
+
+msgid "Question"
+msgstr "问题"
+
+msgid "Category"
+msgstr "分类"
+
+msgid "Tag"
+msgstr "标签"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "Publish Date"
+msgstr "发布日期"
+
+msgid "Created At"
+msgstr "创建时间"
+
+msgid "Updated At"
+msgstr "更新时间"
+
+msgid "View Count"
+msgstr "浏览次数"
+
+msgid "Like Count"
+msgstr "点赞次数"
+
+msgid "Comment Count"
+msgstr "评论次数"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Action"
+msgstr "操作"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Submit Application"
+msgstr "提交申请"
+
+msgid "Approve"
+msgstr "批准"
+
+msgid "Reject"
+msgstr "拒绝"
+
+msgid "Ban"
+msgstr "封禁"
+
+msgid "Unban"
+msgstr "解除封禁"
+
+msgid "Build RAG Database"
+msgstr "构建RAG数据库"
+
+msgid "Building RAG database..."
+msgstr "正在构建RAG数据库..."
+
+msgid "RAG database built successfully"
+msgstr "RAG数据库构建成功"
+
+msgid "Error building RAG database"
+msgstr "构建RAG数据库失败"
+
+msgid "Please login first"
+msgstr "请先登录"
+
+msgid "Username or password error"
+msgstr "用户名或密码错误"
+
+msgid "Username already exists"
+msgstr "用户名已存在"
+
+msgid "Login successful"
+msgstr "登录成功"
+
+msgid "Logout successful"
+msgstr "退出成功"
+
+msgid "Registration successful"
+msgstr "注册成功"
+
+msgid "Policy not found"
+msgstr "政策未找到"
+
+msgid "Interpretation not found"
+msgstr "解读未找到"
+
+msgid "Topic not found"
+msgstr "主题未找到"
+
+msgid "Voice not found"
+msgstr "民声未找到"
+
+msgid "User not found"
+msgstr "用户未找到"
+
+msgid "Category not found"
+msgstr "分类未找到"
+
+msgid "Tag not found"
+msgstr "标签未找到"
+
+msgid "Invalid input"
+msgstr "输入无效"
+
+msgid "Operation successful"
+msgstr "操作成功"
+
+msgid "Operation failed"
+msgstr "操作失败"
+
+msgid "You have been banned"
+msgstr "您已被封禁"
+
+msgid "You are not an expert"
+msgstr "您不是专家"
+
+msgid "Application submitted successfully"
+msgstr "申请提交成功"
+
+msgid "Application approved"
+msgstr "申请已批准"
+
+msgid "Application rejected"
+msgstr "申请已拒绝"
+
+msgid "Interpretation submitted successfully"
+msgstr "解读提交成功"
+
+msgid "Interpretation approved"
+msgstr "解读已批准"
+
+msgid "Interpretation rejected"
+msgstr "解读已拒绝"
+
+msgid "Topic published successfully"
+msgstr "主题发布成功"
+
+msgid "Reply submitted successfully"
+msgstr "回复提交成功"
+
+msgid "Favorite added successfully"
+msgstr "收藏成功"
+
+msgid "Favorite removed successfully"
+msgstr "取消收藏成功"
+
+msgid "Already favorited"
+msgstr "已经收藏过"
+
+msgid "Liked successfully"
+msgstr "点赞成功"
+
+msgid "Already liked"
+msgstr "已经点过赞了"
+
+msgid "Settings updated successfully"
+msgstr "设置更新成功"
+
+msgid "Endorsement added successfully"
+msgstr "推举成功"
+
+msgid "Endorsement failed"
+msgstr "推举失败"
+
+msgid "Topic published to public voice"
+msgstr "该主题已发布到民声"
+
+msgid "Statistics"
+msgstr "数据统计"
+
+msgid "Total Policies"
+msgstr "政策总数"
+
+msgid "Total Users"
+msgstr "用户总数"
+
+msgid "Total Topics"
+msgstr "主题总数"
+
+msgid "Total Replies"
+msgstr "回复总数"
+
+msgid "Total Interpretations"
+msgstr "解读总数"
+
+msgid "Total Public Voices"
+msgstr "民声总数"
+
+msgid "Search History"
+msgstr "搜索历史"
+
+msgid "Forum Topics"
+msgstr "讨论主题"
+
+msgid "Forum Replies"
+msgstr "讨论回复"
+
+msgid "Q&A History"
+msgstr "问答历史"
+
+msgid "Favorites"
+msgstr "收藏"
+
+msgid "Expert Application"
+msgstr "专家申请"
+
+msgid "Expert Status"
+msgstr "专家状态"
+
+msgid "Pending"
+msgstr "待审核"
+
+msgid "Approved"
+msgstr "已批准"
+
+msgid "Rejected"
+msgstr "已拒绝"
+
+msgid "User"
+msgstr "用户"
+
+msgid "Admin"
+msgstr "管理员"
+
+msgid "Expert"
+msgstr "专家"
+
+msgid "Banned"
+msgstr "已封禁"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Inactive"
+msgstr "不活跃"
+
+msgid "Public Voice"
+msgstr "民声"
+
+msgid "Expert Interpretation"
+msgstr "专家解读"
+
+msgid "Policy Management"
+msgstr "政策管理"
+
+msgid "Category Management"
+msgstr "分类管理"
+
+msgid "Tag Management"
+msgstr "标签管理"
+
+msgid "User Management"
+msgstr "用户管理"
+
+msgid "Expert Management"
+msgstr "专家管理"
+
+msgid "Interpretation Management"
+msgstr "解读管理"
+
+msgid "Public Voice Management"
+msgstr "民声管理"
+
+msgid "RAG Management"
+msgstr "RAG管理"
+
+msgid "Data Statistics"
+msgstr "数据统计"
+
+msgid "Dashboard"
+msgstr "仪表盘"
+
+msgid "Welcome"
+msgstr "欢迎"
+
+msgid "Welcome to Policy Q&A System"
+msgstr "欢迎使用政策问答系统"
+
+msgid "Please enter your question"
+msgstr "请输入您的问题"
+
+msgid "Enter search keyword"
+msgstr "输入搜索关键词"
+
+msgid "Create New Topic"
+msgstr "发布新主题"
+
+msgid "Write your topic"
+msgstr "写下你的主题"
+
+msgid "Write your reply"
+msgstr "写下你的回复"
+
+msgid "Apply for Expert"
+msgstr "申请专家"
+
+msgid "Write your application"
+msgstr "写下你的申请"
+
+msgid "Write your interpretation"
+msgstr "写下你的解读"
+
+msgid "Add Policy"
+msgstr "添加政策"
+
+msgid "Add Category"
+msgstr "添加分类"
+
+msgid "Add Tag"
+msgstr "添加标签"
+
+msgid "Update Settings"
+msgstr "更新设置"
+
+msgid "Minimum View Count"
+msgstr "最小浏览次数"
+
+msgid "Minimum Like Count"
+msgstr "最小点赞次数"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Chinese"
+msgstr "中文"
+
+msgid "English"
+msgstr "英文"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "Light"
+msgstr "浅色"
+
+msgid "Dark"
+msgstr "深色"
+
+msgid "Policy Details"
+msgstr "政策详情"
+
+msgid "Interpretation Details"
+msgstr "解读详情"
+
+msgid "Topic Details"
+msgstr "主题详情"
+
+msgid "Voice Details"
+msgstr "民声详情"
+
+msgid "User Profile"
+msgstr "用户资料"
+
+msgid "Edit Profile"
+msgstr "编辑资料"
+
+msgid "Nickname"
+msgstr "昵称"
+
+msgid "Region"
+msgstr "地区"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Joined At"
+msgstr "加入时间"
+
+msgid "Last Login"
+msgstr "最后登录"
+
+msgid "API Key"
+msgstr "API密钥"
+
+msgid "Zhipu API Key"
+msgstr "智谱API密钥"
+
+msgid "Tencent API Key"
+msgstr "腾讯API密钥"
+
+msgid "Save API Keys"
+msgstr "保存API密钥"
+
+msgid "API Keys saved successfully"
+msgstr "API密钥保存成功"
+
+msgid "Build RAG Database"
+msgstr "构建RAG数据库"
+
+msgid "RAG Database"
+msgstr "RAG数据库"
+
+msgid "Build Now"
+msgstr "立即构建"
+
+msgid "Building..."
+msgstr "构建中..."
+
+msgid "Build completed"
+msgstr "构建完成"
+
+msgid "Build failed"
+msgstr "构建失败"
+
+msgid "Total Chunks"
+msgstr "总文本块数"
+
+msgid "Success Count"
+msgstr "成功数量"
+
+msgid "Failure Count"
+msgstr "失败数量"
+
+msgid "Build Time"
+msgstr "构建时间"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Export"
+msgstr "导出"
+
+msgid "Import"
+msgstr "导入"
+
+msgid "Backup"
+msgstr "备份"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Delete All"
+msgstr "全部删除"
+
+msgid "Confirm Delete"
+msgstr "确认删除"
+
+msgid "Are you sure to delete?"
+msgstr "确定要删除吗？"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "No"
+msgstr "否"
+
+msgid "Filter"
+msgstr "筛选"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Submit"
+msgstr "提交"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "View"
+msgstr "查看"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Next"
+msgstr "下一页"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "First"
+msgstr "第一页"
+
+msgid "Last"
+msgstr "最后一页"
+
+msgid "Page"
+msgstr "页码"
+
+msgid "of"
+msgstr "共"
+
+msgid "items"
+msgstr "条"
+
+msgid "per page"
+msgstr "每页"
+
+msgid "Total"
+msgstr "总计"
+
+msgid "Results"
+msgstr "结果"
+
+msgid "No results found"
+msgstr "未找到结果"
+
+msgid "Loading..."
+msgstr "加载中..."
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Please wait"
+msgstr "请稍候"
+
+msgid "Operation in progress"
+msgstr "操作进行中"
+
+msgid "Operation completed"
+msgstr "操作完成"
+
+msgid "Operation failed"
+msgstr "操作失败"
+
+msgid "Please check your input"
+msgstr "请检查您的输入"
+
+msgid "Please try again"
+msgstr "请重试"
+
+msgid "Contact administrator"
+msgstr "联系管理员"
+
+msgid "System error"
+msgstr "系统错误"
+
+msgid "Network error"
+msgstr "网络错误"
+
+msgid "Timeout"
+msgstr "超时"
+
+msgid "Unauthorized"
+msgstr "未授权"
+
+msgid "Forbidden"
+msgstr "禁止访问"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Internal server error"
+msgstr "服务器内部错误"
+
+msgid "Bad request"
+msgstr "请求错误"
+
+msgid "Method not allowed"
+msgstr "方法不允许"
+
+msgid "Conflict"
+msgstr "冲突"
+
+msgid "Precondition failed"
+msgstr "先决条件失败"
+
+msgid "Payload too large"
+msgstr "负载过大"
+
+msgid "Unsupported media type"
+msgstr "不支持的媒体类型"
+
+msgid "Too many requests"
+msgstr "请求过多"
+
+msgid "Internal server error"
+msgstr "服务器内部错误"
+
+msgid "Service unavailable"
+msgstr "服务不可用"
+
+msgid "Gateway timeout"
+msgstr "网关超时"
+
+msgid "HTTP version not supported"
+msgstr "不支持的HTTP版本"
+
+msgid "Policy Q&A System"
+msgstr "政策问答系统"
+
+msgid "Powered by Flask and RAG technology"
+msgstr "由Flask和RAG技术提供支持"
+
+msgid "© 2026 Policy Q&A System"
+msgstr "© 2026 政策问答系统"
+
+msgid "All rights reserved"
+msgstr "保留所有权利"
+
+msgid "Privacy Policy"
+msgstr "隐私政策"
+
+msgid "Terms of Service"
+msgstr "服务条款"
+
+msgid "About Us"
+msgstr "关于我们"
+
+msgid "Contact Us"
+msgstr "联系我们"
+
+msgid "Help"
+msgstr "帮助"
+
+msgid "FAQ"
+msgstr "常见问题"
+
+msgid "Documentation"
+msgstr "文档"
+
+msgid "API Reference"
+msgstr "API参考"
+
+msgid "Changelog"
+msgstr "更新日志"
+
+msgid "Roadmap"
+msgstr "路线图"
+
+msgid "Contributors"
+msgstr "贡献者"
+
+msgid "License"
+msgstr "许可证"
+
+msgid "Source Code"
+msgstr "源代码"
+
+msgid "Issue Tracker"
+msgstr "问题追踪"
+
+msgid "Pull Requests"
+msgstr "拉取请求"
+
+msgid "Discussions"
+msgstr "讨论"
+
+msgid "Community"
+msgstr "社区"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "GitHub"
+msgstr "GitHub"
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "WeChat"
+msgstr "微信"
+
+msgid "Weibo"
+msgstr "微博"
+
+msgid "QQ"
+msgstr "QQ"
+
+msgid "Email"
+msgstr "邮箱"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Website"
+msgstr "网站"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "News"
+msgstr "新闻"
+
+msgid "Events"
+msgstr "事件"
+
+msgid "Careers"
+msgstr "招聘"
+
+msgid "Partners"
+msgstr "合作伙伴"
+
+msgid "Sponsors"
+msgstr "赞助商"
+
+msgid "Donate"
+msgstr "捐赠"
+
+msgid "Support"
+msgstr "支持"
+
+msgid "Feedback"
+msgstr "反馈"
+
+msgid "Report Bug"
+msgstr "报告错误"
+
+msgid "Suggest Feature"
+msgstr "建议功能"
+
+msgid "Rate Us"
+msgstr "评分"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Copy Link"
+msgstr "复制链接"
+
+msgid "Embed"
+msgstr "嵌入"
+
+msgid "Print"
+msgstr "打印"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Export"
+msgstr "导出"
+
+msgid "Import"
+msgstr "导入"
+
+msgid "Backup"
+msgstr "备份"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "View"
+msgstr "查看"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Next"
+msgstr "下一页"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "First"
+msgstr "第一页"
+
+msgid "Last"
+msgstr "最后一页"
+
+msgid "Page"
+msgstr "页码"
+
+msgid "of"
+msgstr "共"
+
+msgid "items"
+msgstr "条"
+
+msgid "per page"
+msgstr "每页"
+
+msgid "Total"
+msgstr "总计"
+
+msgid "Results"
+msgstr "结果"
+
+msgid "No results found"
+msgstr "未找到结果"
+
+msgid "Loading..."
+msgstr "加载中..."
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Please wait"
+msgstr "请稍候"
+
+msgid "Operation in progress"
+msgstr "操作进行中"
+
+msgid "Operation completed"
+msgstr "操作完成"
+
+msgid "Operation failed"
+msgstr "操作失败"
+
+msgid "Please check your input"
+msgstr "请检查您的输入"
+
+msgid "Please try again"
+msgstr "请重试"
+
+msgid "Contact administrator"
+msgstr "联系管理员"
+
+msgid "System error"
+msgstr "系统错误"
+
+msgid "Network error"
+msgstr "网络错误"
+
+msgid "Timeout"
+msgstr "超时"
+
+msgid "Unauthorized"
+msgstr "未授权"
+
+msgid "Forbidden"
+msgstr "禁止访问"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Internal server error"
+msgstr "服务器内部错误"
+
+msgid "Bad request"
+msgstr "请求错误"
+
+msgid "Method not allowed"
+msgstr "方法不允许"
+
+msgid "Conflict"
+msgstr "冲突"
+
+msgid "Precondition failed"
+msgstr "先决条件失败"
+
+msgid "Payload too large"
+msgstr "负载过大"
+
+msgid "Unsupported media type"
+msgstr "不支持的媒体类型"
+
+msgid "Too many requests"
+msgstr "请求过多"
+
+msgid "Internal server error"
+msgstr "服务器内部错误"
+
+msgid "Service unavailable"
+msgstr "服务不可用"
+
+msgid "Gateway timeout"
+msgstr "网关超时"
+
+msgid "HTTP version not supported"
+msgstr "不支持的HTTP版本"
+
+msgid "Policy Q&A System"
+msgstr "政策问答系统"
+
+msgid "Powered by Flask and RAG technology"
+msgstr "由Flask和RAG技术提供支持"
+
+msgid "© 2026 Policy Q&A System"
+msgstr "© 2026 政策问答系统"
+
+msgid "All rights reserved"
+msgstr "保留所有权利"
+
+msgid "Privacy Policy"
+msgstr "隐私政策"
+
+msgid "Terms of Service"
+msgstr "服务条款"
+
+msgid "About Us"
+msgstr "关于我们"
+
+msgid "Contact Us"
+msgstr "联系我们"
+
+msgid "Help"
+msgstr "帮助"
+
+msgid "FAQ"
+msgstr "常见问题"
+
+msgid "Documentation"
+msgstr "文档"
+
+msgid "API Reference"
+msgstr "API参考"
+
+msgid "Changelog"
+msgstr "更新日志"
+
+msgid "Roadmap"
+msgstr "路线图"
+
+msgid "Contributors"
+msgstr "贡献者"
+
+msgid "License"
+msgstr "许可证"
+
+msgid "Source Code"
+msgstr "源代码"
+
+msgid "Issue Tracker"
+msgstr "问题追踪"
+
+msgid "Pull Requests"
+msgstr "拉取请求"
+
+msgid "Discussions"
+msgstr "讨论"
+
+msgid "Community"
+msgstr "社区"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "GitHub"
+msgstr "GitHub"
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "WeChat"
+msgstr "微信"
+
+msgid "Weibo"
+msgstr "微博"
+
+msgid "QQ"
+msgstr "QQ"
+
+msgid "Email"
+msgstr "邮箱"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Website"
+msgstr "网站"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "News"
+msgstr "新闻"
+
+msgid "Events"
+msgstr "事件"
+
+msgid "Careers"
+msgstr "招聘"
+
+msgid "Partners"
+msgstr "合作伙伴"
+
+msgid "Sponsors"
+msgstr "赞助商"
+
+msgid "Donate"
+msgstr "捐赠"
+
+msgid "Support"
+msgstr "支持"
+
+msgid "Feedback"
+msgstr "反馈"
+
+msgid "Report Bug"
+msgstr "报告错误"
+
+msgid "Suggest Feature"
+msgstr "建议功能"
+
+msgid "Rate Us"
+msgstr "评分"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Copy Link"
+msgstr "复制链接"
+
+msgid "Embed"
+msgstr "嵌入"
+
+msgid "Print"
+msgstr "打印"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Export"
+msgstr "导出"
+
+msgid "Import"
+msgstr "导入"
+
+msgid "Backup"
+msgstr "备份"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "View"
+msgstr "查看"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Next"
+msgstr "下一页"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "First"
+msgstr "第一页"
+
+msgid "Last"
+msgstr "最后一页"
+
+msgid "Page"
+msgstr "页码"
+
+msgid "of"
+msgstr "共"
+
+msgid "items"
+msgstr "条"
+
+msgid "per page"
+msgstr "每页"
+
+msgid "Total"
+msgstr "总计"
+
+msgid "Results"
+msgstr "结果"
+
+msgid "No results found"
+msgstr "未找到结果"
+
+msgid "Loading..."
+msgstr "加载中..."
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Please wait"
+msgstr "请稍候"
+
+msgid "Operation in progress"
+msgstr "操作进行中"
+
+msgid "Operation completed"
+msgstr "操作完成"
+
+msgid "Operation failed"
+msgstr "操作失败"
+
+msgid "Please check your input"
+msgstr "请检查您的输入"
+
+msgid "Please try again"
+msgstr "请重试"
+
+msgid "Contact administrator"
+msgstr "联系管理员"
+
+msgid "System error"
+msgstr "系统错误"
+
+msgid "Network error"
+msgstr "网络错误"
+
+msgid "Timeout"
+msgstr "超时"
+
+msgid "Unauthorized"
+msgstr "未授权"
+
+msgid "Forbidden"
+msgstr "禁止访问"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Internal server error"
+msgstr "服务器内部错误"
+
+msgid "Bad request"
+msgstr "请求错误"
+
+msgid "Method not allowed"
+msgstr "方法不允许"
+
+msgid "Conflict"
+msgstr "冲突"
+
+msgid "Precondition failed"
+msgstr "先决条件失败"
+
+msgid "Payload too large"
+msgstr "负载过大"
+
+msgid "Unsupported media type"
+msgstr "不支持的媒体类型"
+
+msgid "Too many requests"
+msgstr "请求过多"
+
+msgid "Internal server error"
+msgstr "服务器内部错误"
+
+msgid "Service unavailable"
+msgstr "服务不可用"
+
+msgid "Gateway timeout"
+msgstr "网关超时"
+
+msgid "HTTP version not supported"
+msgstr "不支持的HTTP版本"

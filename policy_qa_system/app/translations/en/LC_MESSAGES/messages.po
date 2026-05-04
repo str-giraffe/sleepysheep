@@ -1,0 +1,1283 @@
+msgid "Policy Q&A System"
+msgstr "Policy Q&A System"
+
+msgid "Intelligent policy consulting system based on RAG technology"
+msgstr "Intelligent policy consulting system based on RAG technology"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Policy Q&A"
+msgstr "Policy Q&A"
+
+msgid "Ask"
+msgstr "Ask"
+
+msgid "Answer"
+msgstr "Answer"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Question"
+msgstr "Question"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Content"
+msgstr "Content"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Publish Date"
+msgstr "Publish Date"
+
+msgid "Created At"
+msgstr "Created At"
+
+msgid "Updated At"
+msgstr "Updated At"
+
+msgid "View Count"
+msgstr "View Count"
+
+msgid "Like Count"
+msgstr "Like Count"
+
+msgid "Comment Count"
+msgstr "Comment Count"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Submit Application"
+msgstr "Submit Application"
+
+msgid "Approve"
+msgstr "Approve"
+
+msgid "Reject"
+msgstr "Reject"
+
+msgid "Ban"
+msgstr "Ban"
+
+msgid "Unban"
+msgstr "Unban"
+
+msgid "Build RAG Database"
+msgstr "Build RAG Database"
+
+msgid "Building RAG database..."
+msgstr "Building RAG database..."
+
+msgid "RAG database built successfully"
+msgstr "RAG database built successfully"
+
+msgid "Error building RAG database"
+msgstr "Error building RAG database"
+
+msgid "Please login first"
+msgstr "Please login first"
+
+msgid "Username or password error"
+msgstr "Username or password error"
+
+msgid "Username already exists"
+msgstr "Username already exists"
+
+msgid "Login successful"
+msgstr "Login successful"
+
+msgid "Logout successful"
+msgstr "Logout successful"
+
+msgid "Registration successful"
+msgstr "Registration successful"
+
+msgid "Policy not found"
+msgstr "Policy not found"
+
+msgid "Interpretation not found"
+msgstr "Interpretation not found"
+
+msgid "Topic not found"
+msgstr "Topic not found"
+
+msgid "Voice not found"
+msgstr "Voice not found"
+
+msgid "User not found"
+msgstr "User not found"
+
+msgid "Category not found"
+msgstr "Category not found"
+
+msgid "Tag not found"
+msgstr "Tag not found"
+
+msgid "Invalid input"
+msgstr "Invalid input"
+
+msgid "Operation successful"
+msgstr "Operation successful"
+
+msgid "Operation failed"
+msgstr "Operation failed"
+
+msgid "You have been banned"
+msgstr "You have been banned"
+
+msgid "You are not an expert"
+msgstr "You are not an expert"
+
+msgid "Application submitted successfully"
+msgstr "Application submitted successfully"
+
+msgid "Application approved"
+msgstr "Application approved"
+
+msgid "Application rejected"
+msgstr "Application rejected"
+
+msgid "Interpretation submitted successfully"
+msgstr "Interpretation submitted successfully"
+
+msgid "Interpretation approved"
+msgstr "Interpretation approved"
+
+msgid "Interpretation rejected"
+msgstr "Interpretation rejected"
+
+msgid "Topic published successfully"
+msgstr "Topic published successfully"
+
+msgid "Reply submitted successfully"
+msgstr "Reply submitted successfully"
+
+msgid "Favorite added successfully"
+msgstr "Favorite added successfully"
+
+msgid "Favorite removed successfully"
+msgstr "Favorite removed successfully"
+
+msgid "Already favorited"
+msgstr "Already favorited"
+
+msgid "Liked successfully"
+msgstr "Liked successfully"
+
+msgid "Already liked"
+msgstr "Already liked"
+
+msgid "Settings updated successfully"
+msgstr "Settings updated successfully"
+
+msgid "Endorsement added successfully"
+msgstr "Endorsement added successfully"
+
+msgid "Endorsement failed"
+msgstr "Endorsement failed"
+
+msgid "Topic published to public voice"
+msgstr "Topic published to public voice"
+
+msgid "Statistics"
+msgstr "Statistics"
+
+msgid "Total Policies"
+msgstr "Total Policies"
+
+msgid "Total Users"
+msgstr "Total Users"
+
+msgid "Total Topics"
+msgstr "Total Topics"
+
+msgid "Total Replies"
+msgstr "Total Replies"
+
+msgid "Total Interpretations"
+msgstr "Total Interpretations"
+
+msgid "Total Public Voices"
+msgstr "Total Public Voices"
+
+msgid "Search History"
+msgstr "Search History"
+
+msgid "Forum Topics"
+msgstr "Forum Topics"
+
+msgid "Forum Replies"
+msgstr "Forum Replies"
+
+msgid "Q&A History"
+msgstr "Q&A History"
+
+msgid "Favorites"
+msgstr "Favorites"
+
+msgid "Expert Application"
+msgstr "Expert Application"
+
+msgid "Expert Status"
+msgstr "Expert Status"
+
+msgid "Pending"
+msgstr "Pending"
+
+msgid "Approved"
+msgstr "Approved"
+
+msgid "Rejected"
+msgstr "Rejected"
+
+msgid "User"
+msgstr "User"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Expert"
+msgstr "Expert"
+
+msgid "Banned"
+msgstr "Banned"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Inactive"
+msgstr "Inactive"
+
+msgid "Public Voice"
+msgstr "Public Voice"
+
+msgid "Expert Interpretation"
+msgstr "Expert Interpretation"
+
+msgid "Policy Management"
+msgstr "Policy Management"
+
+msgid "Category Management"
+msgstr "Category Management"
+
+msgid "Tag Management"
+msgstr "Tag Management"
+
+msgid "User Management"
+msgstr "User Management"
+
+msgid "Expert Management"
+msgstr "Expert Management"
+
+msgid "Interpretation Management"
+msgstr "Interpretation Management"
+
+msgid "Public Voice Management"
+msgstr "Public Voice Management"
+
+msgid "RAG Management"
+msgstr "RAG Management"
+
+msgid "Data Statistics"
+msgstr "Data Statistics"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Welcome to Policy Q&A System"
+msgstr "Welcome to Policy Q&A System"
+
+msgid "Please enter your question"
+msgstr "Please enter your question"
+
+msgid "Enter search keyword"
+msgstr "Enter search keyword"
+
+msgid "Create New Topic"
+msgstr "Create New Topic"
+
+msgid "Write your topic"
+msgstr "Write your topic"
+
+msgid "Write your reply"
+msgstr "Write your reply"
+
+msgid "Apply for Expert"
+msgstr "Apply for Expert"
+
+msgid "Write your application"
+msgstr "Write your application"
+
+msgid "Write your interpretation"
+msgstr "Write your interpretation"
+
+msgid "Add Policy"
+msgstr "Add Policy"
+
+msgid "Add Category"
+msgstr "Add Category"
+
+msgid "Add Tag"
+msgstr "Add Tag"
+
+msgid "Update Settings"
+msgstr "Update Settings"
+
+msgid "Minimum View Count"
+msgstr "Minimum View Count"
+
+msgid "Minimum Like Count"
+msgstr "Minimum Like Count"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Chinese"
+msgstr "Chinese"
+
+msgid "English"
+msgstr "English"
+
+msgid "Theme"
+msgstr "Theme"
+
+msgid "Light"
+msgstr "Light"
+
+msgid "Dark"
+msgstr "Dark"
+
+msgid "Policy Details"
+msgstr "Policy Details"
+
+msgid "Interpretation Details"
+msgstr "Interpretation Details"
+
+msgid "Topic Details"
+msgstr "Topic Details"
+
+msgid "Voice Details"
+msgstr "Voice Details"
+
+msgid "User Profile"
+msgstr "User Profile"
+
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+msgid "Nickname"
+msgstr "Nickname"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Joined At"
+msgstr "Joined At"
+
+msgid "Last Login"
+msgstr "Last Login"
+
+msgid "API Key"
+msgstr "API Key"
+
+msgid "Zhipu API Key"
+msgstr "Zhipu API Key"
+
+msgid "Tencent API Key"
+msgstr "Tencent API Key"
+
+msgid "Save API Keys"
+msgstr "Save API Keys"
+
+msgid "API Keys saved successfully"
+msgstr "API Keys saved successfully"
+
+msgid "Build RAG Database"
+msgstr "Build RAG Database"
+
+msgid "RAG Database"
+msgstr "RAG Database"
+
+msgid "Build Now"
+msgstr "Build Now"
+
+msgid "Building..."
+msgstr "Building..."
+
+msgid "Build completed"
+msgstr "Build completed"
+
+msgid "Build failed"
+msgstr "Build failed"
+
+msgid "Total Chunks"
+msgstr "Total Chunks"
+
+msgid "Success Count"
+msgstr "Success Count"
+
+msgid "Failure Count"
+msgstr "Failure Count"
+
+msgid "Build Time"
+msgstr "Build Time"
+
+msgid "Refresh"
+msgstr "Refresh"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "Delete All"
+msgstr "Delete All"
+
+msgid "Confirm Delete"
+msgstr "Confirm Delete"
+
+msgid "Are you sure to delete?"
+msgstr "Are you sure to delete?"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "No"
+msgstr "No"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Create"
+msgstr "Create"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "View"
+msgstr "View"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "First"
+msgstr "First"
+
+msgid "Last"
+msgstr "Last"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "of"
+msgstr "of"
+
+msgid "items"
+msgstr "items"
+
+msgid "per page"
+msgstr "per page"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Results"
+msgstr "Results"
+
+msgid "No results found"
+msgstr "No results found"
+
+msgid "Loading..."
+msgstr "Loading..."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Please wait"
+msgstr "Please wait"
+
+msgid "Operation in progress"
+msgstr "Operation in progress"
+
+msgid "Operation completed"
+msgstr "Operation completed"
+
+msgid "Operation failed"
+msgstr "Operation failed"
+
+msgid "Please check your input"
+msgstr "Please check your input"
+
+msgid "Please try again"
+msgstr "Please try again"
+
+msgid "Contact administrator"
+msgstr "Contact administrator"
+
+msgid "System error"
+msgstr "System error"
+
+msgid "Network error"
+msgstr "Network error"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Unauthorized"
+msgstr "Unauthorized"
+
+msgid "Forbidden"
+msgstr "Forbidden"
+
+msgid "Not found"
+msgstr "Not found"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Bad request"
+msgstr "Bad request"
+
+msgid "Method not allowed"
+msgstr "Method not allowed"
+
+msgid "Conflict"
+msgstr "Conflict"
+
+msgid "Precondition failed"
+msgstr "Precondition failed"
+
+msgid "Payload too large"
+msgstr "Payload too large"
+
+msgid "Unsupported media type"
+msgstr "Unsupported media type"
+
+msgid "Too many requests"
+msgstr "Too many requests"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Service unavailable"
+msgstr "Service unavailable"
+
+msgid "Gateway timeout"
+msgstr "Gateway timeout"
+
+msgid "HTTP version not supported"
+msgstr "HTTP version not supported"
+
+msgid "Policy Q&A System"
+msgstr "Policy Q&A System"
+
+msgid "Powered by Flask and RAG technology"
+msgstr "Powered by Flask and RAG technology"
+
+msgid "© 2026 Policy Q&A System"
+msgstr "© 2026 Policy Q&A System"
+
+msgid "All rights reserved"
+msgstr "All rights reserved"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Terms of Service"
+msgstr "Terms of Service"
+
+msgid "About Us"
+msgstr "About Us"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Documentation"
+msgstr "Documentation"
+
+msgid "API Reference"
+msgstr "API Reference"
+
+msgid "Changelog"
+msgstr "Changelog"
+
+msgid "Roadmap"
+msgstr "Roadmap"
+
+msgid "Contributors"
+msgstr "Contributors"
+
+msgid "License"
+msgstr "License"
+
+msgid "Source Code"
+msgstr "Source Code"
+
+msgid "Issue Tracker"
+msgstr "Issue Tracker"
+
+msgid "Pull Requests"
+msgstr "Pull Requests"
+
+msgid "Discussions"
+msgstr "Discussions"
+
+msgid "Community"
+msgstr "Community"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "GitHub"
+msgstr "GitHub"
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "WeChat"
+msgstr "WeChat"
+
+msgid "Weibo"
+msgstr "Weibo"
+
+msgid "QQ"
+msgstr "QQ"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "News"
+msgstr "News"
+
+msgid "Events"
+msgstr "Events"
+
+msgid "Careers"
+msgstr "Careers"
+
+msgid "Partners"
+msgstr "Partners"
+
+msgid "Sponsors"
+msgstr "Sponsors"
+
+msgid "Donate"
+msgstr "Donate"
+
+msgid "Support"
+msgstr "Support"
+
+msgid "Feedback"
+msgstr "Feedback"
+
+msgid "Report Bug"
+msgstr "Report Bug"
+
+msgid "Suggest Feature"
+msgstr "Suggest Feature"
+
+msgid "Rate Us"
+msgstr "Rate Us"
+
+msgid "Share"
+msgstr "Share"
+
+msgid "Copy Link"
+msgstr "Copy Link"
+
+msgid "Embed"
+msgstr "Embed"
+
+msgid "Print"
+msgstr "Print"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "View"
+msgstr "View"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "First"
+msgstr "First"
+
+msgid "Last"
+msgstr "Last"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "of"
+msgstr "of"
+
+msgid "items"
+msgstr "items"
+
+msgid "per page"
+msgstr "per page"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Results"
+msgstr "Results"
+
+msgid "No results found"
+msgstr "No results found"
+
+msgid "Loading..."
+msgstr "Loading..."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Please wait"
+msgstr "Please wait"
+
+msgid "Operation in progress"
+msgstr "Operation in progress"
+
+msgid "Operation completed"
+msgstr "Operation completed"
+
+msgid "Operation failed"
+msgstr "Operation failed"
+
+msgid "Please check your input"
+msgstr "Please check your input"
+
+msgid "Please try again"
+msgstr "Please try again"
+
+msgid "Contact administrator"
+msgstr "Contact administrator"
+
+msgid "System error"
+msgstr "System error"
+
+msgid "Network error"
+msgstr "Network error"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Unauthorized"
+msgstr "Unauthorized"
+
+msgid "Forbidden"
+msgstr "Forbidden"
+
+msgid "Not found"
+msgstr "Not found"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Bad request"
+msgstr "Bad request"
+
+msgid "Method not allowed"
+msgstr "Method not allowed"
+
+msgid "Conflict"
+msgstr "Conflict"
+
+msgid "Precondition failed"
+msgstr "Precondition failed"
+
+msgid "Payload too large"
+msgstr "Payload too large"
+
+msgid "Unsupported media type"
+msgstr "Unsupported media type"
+
+msgid "Too many requests"
+msgstr "Too many requests"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Service unavailable"
+msgstr "Service unavailable"
+
+msgid "Gateway timeout"
+msgstr "Gateway timeout"
+
+msgid "HTTP version not supported"
+msgstr "HTTP version not supported"
+
+msgid "Policy Q&A System"
+msgstr "Policy Q&A System"
+
+msgid "Powered by Flask and RAG technology"
+msgstr "Powered by Flask and RAG technology"
+
+msgid "© 2026 Policy Q&A System"
+msgstr "© 2026 Policy Q&A System"
+
+msgid "All rights reserved"
+msgstr "All rights reserved"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Terms of Service"
+msgstr "Terms of Service"
+
+msgid "About Us"
+msgstr "About Us"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Documentation"
+msgstr "Documentation"
+
+msgid "API Reference"
+msgstr "API Reference"
+
+msgid "Changelog"
+msgstr "Changelog"
+
+msgid "Roadmap"
+msgstr "Roadmap"
+
+msgid "Contributors"
+msgstr "Contributors"
+
+msgid "License"
+msgstr "License"
+
+msgid "Source Code"
+msgstr "Source Code"
+
+msgid "Issue Tracker"
+msgstr "Issue Tracker"
+
+msgid "Pull Requests"
+msgstr "Pull Requests"
+
+msgid "Discussions"
+msgstr "Discussions"
+
+msgid "Community"
+msgstr "Community"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "GitHub"
+msgstr "GitHub"
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "WeChat"
+msgstr "WeChat"
+
+msgid "Weibo"
+msgstr "Weibo"
+
+msgid "QQ"
+msgstr "QQ"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "News"
+msgstr "News"
+
+msgid "Events"
+msgstr "Events"
+
+msgid "Careers"
+msgstr "Careers"
+
+msgid "Partners"
+msgstr "Partners"
+
+msgid "Sponsors"
+msgstr "Sponsors"
+
+msgid "Donate"
+msgstr "Donate"
+
+msgid "Support"
+msgstr "Support"
+
+msgid "Feedback"
+msgstr "Feedback"
+
+msgid "Report Bug"
+msgstr "Report Bug"
+
+msgid "Suggest Feature"
+msgstr "Suggest Feature"
+
+msgid "Rate Us"
+msgstr "Rate Us"
+
+msgid "Share"
+msgstr "Share"
+
+msgid "Copy Link"
+msgstr "Copy Link"
+
+msgid "Embed"
+msgstr "Embed"
+
+msgid "Print"
+msgstr "Print"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "View"
+msgstr "View"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "First"
+msgstr "First"
+
+msgid "Last"
+msgstr "Last"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "of"
+msgstr "of"
+
+msgid "items"
+msgstr "items"
+
+msgid "per page"
+msgstr "per page"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Results"
+msgstr "Results"
+
+msgid "No results found"
+msgstr "No results found"
+
+msgid "Loading..."
+msgstr "Loading..."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Please wait"
+msgstr "Please wait"
+
+msgid "Operation in progress"
+msgstr "Operation in progress"
+
+msgid "Operation completed"
+msgstr "Operation completed"
+
+msgid "Operation failed"
+msgstr "Operation failed"
+
+msgid "Please check your input"
+msgstr "Please check your input"
+
+msgid "Please try again"
+msgstr "Please try again"
+
+msgid "Contact administrator"
+msgstr "Contact administrator"
+
+msgid "System error"
+msgstr "System error"
+
+msgid "Network error"
+msgstr "Network error"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Unauthorized"
+msgstr "Unauthorized"
+
+msgid "Forbidden"
+msgstr "Forbidden"
+
+msgid "Not found"
+msgstr "Not found"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Bad request"
+msgstr "Bad request"
+
+msgid "Method not allowed"
+msgstr "Method not allowed"
+
+msgid "Conflict"
+msgstr "Conflict"
+
+msgid "Precondition failed"
+msgstr "Precondition failed"
+
+msgid "Payload too large"
+msgstr "Payload too large"
+
+msgid "Unsupported media type"
+msgstr "Unsupported media type"
+
+msgid "Too many requests"
+msgstr "Too many requests"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Service unavailable"
+msgstr "Service unavailable"
+
+msgid "Gateway timeout"
+msgstr "Gateway timeout"
+
+msgid "HTTP version not supported"
+msgstr "HTTP version not supported"
