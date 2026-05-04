@@ -1,0 +1,8 @@
+Flask
+Flask-RESTx
+chromadb
+dashscope
+bcrypt
+gunicorn
+requests
+numpy

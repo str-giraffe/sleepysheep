@@ -1,0 +1,18 @@
+component: flask
+name: policy-qa-system
+inputs:
+  region: ap-guangzhou
+  runtime: python3.9
+  timeout: 120
+  memorySize: 256
+  environment:
+    variables:
+      SECRET_KEY: ${env:SECRET_KEY}
+      ZHIPU_API_KEY: ${env:ZHIPU_API_KEY}
+      TENCENT_API_KEY: ${env:TENCENT_API_KEY}
+  apigateway:
+    protocols:
+      - https
+    apiName: policy-qa-system
+    description: Policy Q&A System API
+    enableCORS: true
