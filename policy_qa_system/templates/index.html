@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政策问答系统</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        /* 页面专属样式 - 保持红金橙配色 */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(139,0,0,0.95) 0%, rgba(180,60,40,0.9) 50%, rgba(205,133,63,0.9) 100%);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 24px;
+            margin-bottom: 50px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(139,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.15); opacity: 0.7; }
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 问答卡片 */
+        .qa-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(205,133,63,0.12);
+        }
+
+        .qa-card h2 {
+            color: #8B0000;
+            font-size: 28px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .qa-card h2::before {
+            content: '';
+            width: 6px;
+            height: 32px;
+            background: linear-gradient(180deg, #8B0000 0%, #CD853F 100%);
+            border-radius: 3px;
+        }
+
+        .qa-textarea {
+            width: 100%;
+            padding: 22px;
+            border: 2px solid #E8D5C4;
+            border-radius: 16px;
+            font-size: 16px;
+            line-height: 1.7;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            resize: vertical;
+            min-height: 140px;
+            font-family: inherit;
+            background: #FFFCFA;
+        }
+
+        .qa-textarea:focus {
+            outline: none;
+            border-color: #8B0000;
+            box-shadow: 0 0 0 4px rgba(139,0,0,0.08);
+            background: white;
+        }
+
+        .qa-textarea:disabled {
+            background: #F9F5F2;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .qa-btn {
+            background: linear-gradient(135deg, #8B0000 0%, #A52A2A 50%, #CD853F 100%);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(139,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qa-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .qa-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139,0,0,0.4);
+        }
+
+        .qa-btn:hover:not(:disabled)::before {
+            left: 100%;
+        }
+
+        .qa-btn:disabled {
+            background: #CCC;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .qa-btn:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        /* 回答卡片 */
+        .answer-card {
+            background: linear-gradient(135deg, #FFF9F5 0%, #FFF5EE 100%);
+            border: 1px solid #E8D5C4;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer-card h3 {
+            color: #8B0000;
+            font-size: 20px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        /* 内容网格 */
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+            border: 1px solid rgba(205,133,63,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .section-card h2 {
+            color: #8B0000;
+            font-size: 22px;
+            margin-bottom: 22px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, #8B0000, #CD853F) 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        /* 政策条目 */
+        .policy-item {
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, #FFFAF5 0%, #FFF5EE 100%);
+            border-left: 4px solid #CD853F;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .policy-item:hover {
+            background: linear-gradient(135deg, #FFF5EE 0%, #FFE4D6 100%);
+            transform: translateX(8px);
+            box-shadow: 0 4px 15px rgba(205,133,63,0.15);
+        }
+
+        .policy-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-item a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            display: block;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            transition: color 0.2s;
+        }
+
+        .policy-item a:hover {
+            color: #CD853F;
+        }
+
+        .policy-meta {
+            display: flex;
+            gap: 18px;
+            color: #888;
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+
+        .policy-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 50px 25px;
+            color: #AAA;
+        }
+
+        .empty-state-icon {
+            font-size: 56px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* 用户信息栏 */
+        .user-info-bar {
+            background: white;
+            padding: 12px 22px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .user-info-bar:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B0000 0%, #CD853F 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(139,0,0,0.2);
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .user-region {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .expert-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(255,165,0,0.3);
+        }
+
+        /* 搜索栏 */
+        .search-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid rgba(205,133,63,0.15);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 16px 25px;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: #FFFCFA;
+        }
+
+        .search-input::placeholder {
+            color: #AAA;
+        }
+
+        /* 头部操作 */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .login-link {
+            background: linear-gradient(135deg, #8B0000 0%, #CD853F 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(139,0,0,0.25);
+        }
+
+        .login-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139,0,0,0.35);
+        }
+
+        /* 主容器 */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 25px;
+        }
+
+        /* 页面头部 */
+        .page-header {
+            background: linear-gradient(135deg, #8B0000 0%, #A52A2A 50%, #CD853F 100%);
+            color: white;
+            padding: 30px 50px;
+            border-radius: 0 0 35px 35px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 30px rgba(139,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .page-header p {
+            opacity: 0.9;
+            font-size: 17px;
+            position: relative;
+        }
+
+        /* 快捷提示 */
+        .quick-tips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .quick-tip {
+            background: rgba(139,0,0,0.05);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #8B0000;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(139,0,0,0.1);
+        }
+
+        .quick-tip:hover {
+            background: rgba(139,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* 功能入口卡片 */
+        .feature-card {
+            text-align: center;
+            padding: 45px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8B0000, #CD853F);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            color: #8B0000;
+            margin-bottom: 12px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* 加载动画 */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #F0E0D0;
+            border-top-color: #8B0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 15px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* 参考片段 */
+        .chunk-item {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid #CD853F;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .chunk-item strong {
+            color: #8B0000;
+            font-size: 14px;
+        }
+
+        .chunk-item p {
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* 错误提示 */
+        .error-message {
+            color: #DC3545;
+            padding: 18px;
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFEEEE 100%);
+            border-radius: 12px;
+            border-left: 4px solid #DC3545;
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 50px 25px;
+            }
+
+            .hero-section h1 {
+                font-size: 32px;
+            }
+
+            .hero-section p {
+                font-size: 16px;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qa-card {
+                padding: 25px;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .page-header {
+                padding: 25px 30px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏切换按钮 -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">🏛️ 功能导航</span>
+            <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a href="/" class="sidebar-nav-link active">
+                    <span class="sidebar-nav-icon">🏠</span>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/profile" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">👤</span>
+                    <span>个人中心</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/forum" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">💬</span>
+                    <span>讨论广场</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/search" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">🔍</span>
+                    <span>搜索政策</span>
+                </a>
+            </li>
+            {% if user_info and user_info.role == 'admin' %}
+            <li class="sidebar-nav-item">
+                <a href="/admin" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">⚙️</span>
+                    <span>管理后台</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="sidebar-nav-item">
+                <a href="/logout" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">🚪</span>
+                    <span>退出登录</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 顶部导航 -->
+    <div class="header">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 25px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="/" style="color: white; text-decoration: none; font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                🏛️ 政策问答系统
+            </a>
+            <div class="header-actions">
+                {% if user_info %}
+                    <div class="user-info-bar">
+                        <div class="user-avatar">{{ user_info.username[0]|upper }}</div>
+                        <div>
+                            <div class="user-name">{{ user_info.nickname or user_info.username }}</div>
+                            <div class="user-region">{{ user_info.region or '' }}</div>
+                        </div>
+                        {% if user_info.is_expert %}
+                        <span class="expert-badge">⭐ 专家</span>
+                        {% endif %}
+                    </div>
+                    <a href="/profile" style="color: white; text-decoration: none; padding: 10px 18px; border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">个人中心</a>
+                    <a href="/logout" style="color: white; text-decoration: none; padding: 10px 18px; border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">登出</a>
+                {% else %}
+                    <a href="/login" class="login-link">登录 / 注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- 搜索区域 -->
+        {% if user_info %}
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="🔍 搜索政策内容..." onkeypress="if(event.key==='Enter') window.location.href='/search?q='+this.value">
+            <button class="qa-btn" style="padding: 14px 35px;" onclick="window.location.href='/search?q='+this.previousElementSibling.value">搜索</button>
+        </div>
+        {% endif %}
+
+        <!-- 英雄区域 -->
+        <div class="hero-section">
+            <h1>🛠️ 智能政策咨询助手</h1>
+            <p>基于 RAG 技术，为您提供精准、高效的政策解读与问答服务</p>
+        </div>
+
+        <!-- 政策问答区域 -->
+        <div class="qa-card">
+            <h2>💬 政策问答</h2>
+            {% if user_info %}
+            <textarea id="questionInput" class="qa-textarea" placeholder="请输入您的政策问题，例如："有关大连市推动经济高质量发展的政策有哪些？"" rows="4"></textarea>
+            <div class="quick-tips">
+                <span style="color: #999; font-size: 13px; margin-right: 5px;">💡 快捷提问：</span>
+                <span class="quick-tip" onclick="setQuestion('大连市有哪些人才引进政策？')">人才引进</span>
+                <span class="quick-tip" onclick="setQuestion('企业税收优惠政策有哪些？')">税收优惠</span>
+                <span class="quick-tip" onclick="setQuestion('创业扶持政策有哪些？')">创业扶持</span>
+                <span class="quick-tip" onclick="setQuestion('住房补贴政策是什么？')">住房补贴</span>
+            </div>
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: #999; font-size: 13px;">⌨️ 按 Ctrl+Enter 快速提问</span>
+                <button id="askBtn" class="qa-btn">提交问题</button>
+            </div>
+            {% else %}
+            <textarea class="qa-textarea" placeholder="请登录后使用政策问答功能" disabled rows="4"></textarea>
+            <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                <a href="/login" class="qa-btn">登录后使用</a>
+            </div>
+            {% endif %}
+
+            <div id="answerSection" class="answer-card" style="display: none;">
+                <h3>📝 回答</h3>
+                <div id="loading" style="display: none;">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p class="loading-text">正在分析政策...请稍候</p>
+                    </div>
+                </div>
+                <div id="answerBox"></div>
+                <div id="chunksSection" style="display: none; margin-top: 25px;">
+                    <h4 style="color: #8B0000; margin-bottom: 15px; font-size: 16px; font-weight: 600;">📚 参考政策片段</h4>
+                    <div id="chunksList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容和功能区域 -->
+        <div class="section-grid">
+            <!-- 最新政策 -->
+            <div class="section-card">
+                <h2>📋 最新政策</h2>
+                {% if policies %}
+                    {% for policy in policies %}
+                    <div class="policy-item" onclick="window.location.href='/policy/{{ policy.id }}'">
+                        <a href="/policy/{{ policy.id }}" onclick="event.stopPropagation()">{{ policy.title }}</a>
+                        <div class="policy-meta">
+                            {% if policy.department %}
+                            <span>🏛️ {{ policy.department }}</span>
+                            {% endif %}
+                            {% if policy.publish_date %}
+                            <span>📅 {{ policy.publish_date }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>暂无政策数据</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- 专家解读 -->
+            <div class="section-card">
+                <h2>👨‍💼 专家解读</h2>
+                {% if interpretations %}
+                    {% for interpretation in interpretations %}
+                    <div class="policy-item" onclick="window.location.href='/interpretation/{{ interpretation.id }}'">
+                        <a href="/interpretation/{{ interpretation.id }}" onclick="event.stopPropagation()">{{ interpretation.title }}</a>
+                        <div class="policy-meta">
+                            <span>👤 {{ interpretation.nickname or interpretation.username }}</span>
+                            {% if interpretation.approved_at %}
+                            <span>📅 {{ interpretation.approved_at }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <p>暂无专家解读</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- 民声 -->
+            <div class="section-card">
+                <h2>🗣️ 民声</h2>
+                {% if voices %}
+                    {% for voice in voices %}
+                    <div class="policy-item" onclick="window.location.href='/public-voice/{{ voice.id }}'">
+                        <a href="/public-voice/{{ voice.id }}" onclick="event.stopPropagation()">
+                            {{ voice.title }}
+                            {% if voice.has_image %}
+                            <span style="color: #1890ff; font-size: 13px;">📷</span>
+                            {% endif %}
+                        </a>
+                        <div class="policy-meta">
+                            <span>👁️ {{ voice.view_count or 0 }}</span>
+                            <span>👍 {{ voice.like_count or 0 }}</span>
+                            {% if voice.published_at %}
+                            <span>📅 {{ voice.published_at }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💬</div>
+                        <p>暂无民声内容</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 功能入口 -->
+        <div class="section-grid">
+            <div class="section-card feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>政策搜索</h3>
+                <p>快速查找相关政策文件，支持关键词、分类、地区等多维度检索</p>
+                {% if user_info %}
+                <a href="/search" class="qa-btn">进入搜索</a>
+                {% else %}
+                <a href="/login" class="qa-btn">登录后使用</a>
+                {% endif %}
+            </div>
+
+            <div class="section-card feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>讨论广场</h3>
+                <p>与其他用户交流政策看法，分享经验，共同探讨热点话题</p>
+                {% if user_info %}
+                <a href="/forum" class="qa-btn">进入广场</a>
+                {% else %}
+                <a href="/login" class="qa-btn">登录后使用</a>
+                {% endif %}
+            </div>
+
+            <div class="section-card feature-card">
+                <div class="feature-icon">👤</div>
+                <h3>个人中心</h3>
+                <p>管理您的个人信息、收藏政策、浏览历史和问答记录</p>
+                {% if user_info %}
+                <a href="/profile" class="qa-btn">进入中心</a>
+                {% else %}
+                <a href="/login" class="qa-btn">登录后使用</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 专家发布解读面板 -->
+    {% if user_info and user_info.is_expert %}
+    <div id="expertPanel" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div style="background: white; border-radius: 24px; padding: 35px; max-width: 650px; width: 90%; max-height: 85vh; overflow-y: auto; box-shadow: 0 25px 80px rgba(0,0,0,0.3);">
+            <h3 style="color: #8B0000; margin-bottom: 25px; font-size: 24px; font-weight: 600;">发布政策解读</h3>
+            <form id="interpretationForm">
+                <div style="margin-bottom: 22px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">标题</label>
+                    <input type="text" id="interpretationTitle" style="width: 100%; padding: 14px 18px; border: 2px solid #E8D5C4; border-radius: 12px; font-size: 15px; transition: all 0.3s;" placeholder="请输入解读标题" required onfocus="this.style.borderColor='#8B0000'" onblur="this.style.borderColor='#E8D5C4'">
+                </div>
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">内容</label>
+                    <textarea id="interpretationContent" style="width: 100%; padding: 14px 18px; border: 2px solid #E8D5C4; border-radius: 12px; font-size: 15px; min-height: 220px; resize: vertical; transition: all 0.3s; font-family: inherit;" placeholder="请输入解读内容" required onfocus="this.style.borderColor='#8B0000'" onblur="this.style.borderColor='#E8D5C4'"></textarea>
+                </div>
+                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                    <button type="button" onclick="hideExpertPanel()" class="qa-btn" style="background: #999; padding: 14px 30px;">取消</button>
+                    <button type="submit" class="qa-btn" style="padding: 14px 35px;">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <script>
+        // 设置快捷问题
+        function setQuestion(text) {
+            const input = document.getElementById('questionInput');
+            if (input) {
+                input.value = text;
+                input.focus();
+            }
+        }
+
+        function showExpertPanel() {
+            const panel = document.getElementById('expertPanel');
+            if (panel) {
+                panel.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hideExpertPanel() {
+            const panel = document.getElementById('expertPanel');
+            if (panel) {
+                panel.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 专家解读表单提交
+            const form = document.getElementById('interpretationForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const title = document.getElementById('interpretationTitle').value.trim();
+                    const content = document.getElementById('interpretationContent').value.trim();
+
+                    if (!title || !content) {
+                        alert('标题和内容不能为空');
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch('/api/expert/interpretations', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ title, content })
+                        });
+
+                        const data = await response.json();
+                        if (data.success) {
+                            alert('解读已提交，请等待管理员审核');
+                            hideExpertPanel();
+                            form.reset();
+                        } else {
+                            alert('提交失败：' + data.error);
+                        }
+                    } catch (error) {
+                        alert('提交失败：' + error.message);
+                    }
+                });
+            }
+
+            // 政策问答功能
+            const questionInput = document.getElementById('questionInput');
+            const askBtn = document.getElementById('askBtn');
+            const answerSection = document.getElementById('answerSection');
+            const loading = document.getElementById('loading');
+            const answerBox = document.getElementById('answerBox');
+            const chunksSection = document.getElementById('chunksSection');
+            const chunksList = document.getElementById('chunksList');
+
+            if (askBtn) {
+                askBtn.addEventListener('click', async function() {
+                    const question = questionInput.value.trim();
+                    if (!question) {
+                        alert('请输入您的问题');
+                        return;
+                    }
+
+                    answerSection.style.display = 'block';
+                    loading.style.display = 'block';
+                    answerBox.innerHTML = '';
+                    chunksSection.style.display = 'none';
+
+                    // 滚动到回答区域
+                    answerSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    try {
+                        const response = await fetch('/api/qa', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ question })
+                        });
+
+                        const data = await response.json();
+                        loading.style.display = 'none';
+
+                        if (!data.error) {
+                            answerBox.innerHTML = `<div style="line-height: 1.8; color: #333; font-size: 15px;">${data.answer.replace(/\n/g, '<br>')}</div>`;
+
+                            if (data.chunks && data.chunks.length > 0) {
+                                chunksList.innerHTML = '';
+                                data.chunks.forEach((chunk, index) => {
+                                    const chunkItem = document.createElement('div');
+                                    chunkItem.className = 'chunk-item';
+                                    chunkItem.innerHTML = `<strong>参考 ${index + 1}</strong><p>${chunk}</p>`;
+                                    chunksList.appendChild(chunkItem);
+                                });
+                                chunksSection.style.display = 'block';
+                            }
+                        } else {
+                            answerBox.innerHTML = `<div class="error-message">${data.error}</div>`;
+                        }
+                    } catch (error) {
+                        loading.style.display = 'none';
+                        answerBox.innerHTML = `<div class="error-message">请求失败：${error.message}</div>`;
+                    }
+                });
+            }
+
+            // Ctrl+Enter 快速提问
+            if (questionInput) {
+                questionInput.addEventListener('keydown', function(e) {
+                    if (e.ctrlKey && e.key === 'Enter') {
+                        e.preventDefault();
+                        askBtn.click();
+                    }
+                });
+            }
+        });
+
+        // 侧边栏交互功能
+        let sidebarTimeout;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                toggle.classList.remove('active');
+            } else {
+                sidebar.classList.add('active');
+                toggle.classList.add('active');
+            }
+        }
+
+        function showSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            sidebar.classList.add('active');
+            toggle.classList.add('active');
+        }
+
+        function hideSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            sidebar.classList.remove('active');
+            toggle.classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+
+            // 鼠标进入侧边栏区域时显示
+            sidebar.addEventListener('mouseenter', function() {
+                clearTimeout(sidebarTimeout);
+                showSidebar();
+            });
+
+            // 鼠标离开侧边栏时隐藏
+            sidebar.addEventListener('mouseleave', function() {
+                sidebarTimeout = setTimeout(hideSidebar, 300);
+            });
+
+            // 点击页面其他区域时隐藏侧边栏
+            document.addEventListener('click', function(e) {
+                if (!sidebar.contains(e.target) && !e.target.matches('.sidebar-toggle')) {
+                    hideSidebar();
+                }
+            });
+
+            // ESC 键关闭侧边栏
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideSidebar();
+                    hideExpertPanel();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

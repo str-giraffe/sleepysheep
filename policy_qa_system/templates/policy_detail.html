@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ policy.title }} - 政策详情</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        /* 页面特定样式 */
+        .policy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .policy-header {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.95) 0%, rgba(205, 133, 63, 0.95) 100%);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .policy-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .policy-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .policy-header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .policy-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .policy-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .policy-content-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .policy-content {
+            font-size: 16px;
+            line-height: 2;
+            color: var(--text-primary);
+        }
+
+        .policy-content p {
+            margin-bottom: 20px;
+        }
+
+        .policy-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .policy-tag {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #1565c0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .policy-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.2);
+        }
+
+        .policy-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .action-btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .action-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        .action-btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .action-btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .source-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .related-policies {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .related-policies h3 {
+            color: var(--text-primary);
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .related-item {
+            padding: 15px;
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+            margin-bottom: 10px;
+        }
+
+        .related-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .related-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .related-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .related-item .meta {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .expert-interpretation {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .expert-interpretation h3 {
+            color: var(--text-primary);
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .expert-badge {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #ff8f00 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .interpretation-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .interpretation-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .author-title {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .policy-header {
+                padding: 25px;
+            }
+
+            .policy-header h1 {
+                font-size: 22px;
+            }
+
+            .policy-meta {
+                gap: 10px;
+            }
+
+            .policy-content-card {
+                padding: 25px;
+            }
+
+            .policy-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏切换按钮 -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">🏛️ 功能导航</span>
+            <button class="close-sidebar" onclick="toggleSidebar()">×</button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a href="/" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">🏠</span>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/profile" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">👤</span>
+                    <span>个人中心</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/forum" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">💬</span>
+                    <span>讨论广场</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/search" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">🔍</span>
+                    <span>搜索政策</span>
+                </a>
+            </li>
+            {% if user_info and user_info.role == 'admin' %}
+            <li class="sidebar-nav-item">
+                <a href="/admin" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">⚙️</span>
+                    <span>管理后台</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if user_info and user_info.is_expert %}
+            <li class="sidebar-nav-item">
+                <a href="#" class="sidebar-nav-link" onclick="showExpertPanel()">
+                    <span class="sidebar-nav-icon">📝</span>
+                    <span>发布解读</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="sidebar-nav-item">
+                <a href="/logout" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">🚪</span>
+                    <span>退出登录</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-container">
+        <!-- 顶部导航 -->
+        <nav class="top-nav">
+            <div class="nav-brand">
+                <span class="nav-logo">🏛️</span>
+                <span>政策问答系统</span>
+            </div>
+            <div class="nav-search">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="搜索政策内容...">
+                    <button type="submit" class="btn btn-primary">搜索</button>
+                </form>
+            </div>
+            <div class="nav-user">
+                {% if user_info %}
+                <span class="user-greeting">👤 {{ user_info.nickname or user_info.username }}</span>
+                {% if user_info.region %}
+                <span class="user-region">📍 {{ user_info.region }}</span>
+                {% endif %}
+                {% if user_info.is_expert %}
+                <span class="expert-badge">⭐ 专家</span>
+                {% endif %}
+                <a href="/" class="btn btn-secondary btn-sm">首页</a>
+                <a href="/profile" class="btn btn-secondary btn-sm">个人中心</a>
+                <a href="/logout" class="btn btn-danger btn-sm">登出</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">登录</a>
+                {% endif %}
+            </div>
+        </nav>
+
+        <!-- 政策详情内容 -->
+        <div class="policy-container">
+            <!-- 政策头部 -->
+            <div class="policy-header">
+                <div class="policy-header-content">
+                    <h1>📜 {{ policy.title }}</h1>
+                    <div class="policy-meta">
+                        {% if policy.publish_date %}
+                        <span class="policy-meta-item">
+                            <span>📅</span>
+                            <span>发布日期：{{ policy.publish_date }}</span>
+                        </span>
+                        {% endif %}
+                        {% if policy.category %}
+                        <span class="policy-meta-item">
+                            <span>📁</span>
+                            <span>分类：{{ policy.category }}</span>
+                        </span>
+                        {% endif %}
+                        {% if policy.department %}
+                        <span class="policy-meta-item">
+                            <span>🏢</span>
+                            <span>发布部门：{{ policy.department }}</span>
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 政策内容 -->
+            <div class="policy-content-card">
+                <div class="policy-content">
+                    {{ policy.content }}
+                </div>
+
+                {% if tags %}
+                <div class="policy-tags">
+                    <span style="color: var(--text-tertiary); font-size: 14px;">标签：</span>
+                    {% for tag in tags %}
+                    <span class="policy-tag">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="policy-actions">
+                    <a href="/" class="action-btn action-btn-secondary">
+                        <span>←</span>
+                        <span>返回首页</span>
+                    </a>
+                    {% if policy.source_url %}
+                    <a href="{{ policy.source_url }}" target="_blank" class="action-btn action-btn-primary">
+                        <span>🔗</span>
+                        <span>查看原文</span>
+                    </a>
+                    {% endif %}
+                    {% if user_info %}
+                    <button class="action-btn action-btn-primary" onclick="addToFavorites({{ policy.id }})">
+                        <span>❤️</span>
+                        <span>收藏政策</span>
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- 专家解读 -->
+            {% if interpretations %}
+            <div class="expert-interpretation">
+                <h3>
+                    <span>⭐</span>
+                    <span>专家解读</span>
+                </h3>
+                {% for interpretation in interpretations %}
+                <div class="interpretation-content">
+                    {{ interpretation.content }}
+                </div>
+                <div class="interpretation-author">
+                    <div class="author-avatar">{{ interpretation.expert_name[0] if interpretation.expert_name else '?' }}</div>
+                    <div class="author-info">
+                        <div class="author-name">{{ interpretation.expert_name }}</div>
+                        <div class="author-title">{{ interpretation.expert_title or '认证专家' }}</div>
+                    </div>
+                    <span class="expert-badge">专家认证</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- 相关政策 -->
+            {% if related_policies %}
+            <div class="related-policies">
+                <h3>📚 相关政策</h3>
+                {% for related in related_policies %}
+                <div class="related-item">
+                    <a href="/policy/{{ related.id }}">{{ related.title }}</a>
+                    <div class="meta">
+                        {% if related.publish_date %}📅 {{ related.publish_date }}{% endif %}
+                        {% if related.category %}| 📁 {{ related.category }}{% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // 收藏政策
+        function addToFavorites(policyId) {
+            fetch(`/api/policy/${policyId}/favorite`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification(data.message, 'success');
+                } else {
+                    showNotification(data.error || '收藏失败', 'error');
+                }
+            })
+            .catch(error => {
+                showNotification('网络错误，请稍后重试', 'error');
+            });
+        }
+
+        // 显示专家面板
+        function showExpertPanel() {
+            showNotification('专家发布功能即将开放', 'info');
+        }
+
+        // 通知提示
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+                background: ${type === 'success' ? '#27ae60' : type === 'info' ? '#3498db' : '#e74c3c'};
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // 侧边栏交互
+        let sidebarTimeout;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            sidebar.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        function showSidebar() {
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('sidebarToggle').classList.add('active');
+        }
+
+        function hideSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('sidebarToggle').classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+
+            sidebar.addEventListener('mouseenter', function() {
+                clearTimeout(sidebarTimeout);
+                showSidebar();
+            });
+
+            sidebar.addEventListener('mouseleave', function() {
+                sidebarTimeout = setTimeout(hideSidebar, 300);
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!sidebar.contains(e.target) && !e.target.matches('.sidebar-toggle')) {
+                    hideSidebar();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideSidebar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
